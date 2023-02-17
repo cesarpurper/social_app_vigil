@@ -172,7 +172,8 @@ object Main extends App
       }
     }
 
-  Http().bindAndHandle(socialAppServerRoute, "localhost", 8080)
+  Http().bindAndHandle(socialAppServerRoute, "0.0.0.0", 8080)
+  println("Server Started!")
 
 
 }

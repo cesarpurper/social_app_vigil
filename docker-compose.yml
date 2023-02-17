@@ -1,7 +1,10 @@
 version: '2'
 
+
+
 services:
   postgres:
+    hostname: postgres  
     image: postgres:latest
     container_name: postgres
     environment:
@@ -12,3 +15,11 @@ services:
       - "5432:5432"
     volumes:
       - "./sql:/docker-entrypoint-initdb.d"
+  socialApp:
+    depends_on:
+      - postgres
+    image: cesar/social-app-cesar-vigil
+    ports:
+      - '8080:8080'
+      
+

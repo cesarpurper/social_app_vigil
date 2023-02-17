@@ -1,6 +1,9 @@
+import com.typesafe.sbt.packager.docker.{ExecCmd, _}
+
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
 ThisBuild / scalaVersion := "2.12.8"
+
 
 lazy val root = (project in file("."))
   .settings(
@@ -41,3 +44,20 @@ libraryDependencies ++= Seq(
   "org.postgresql" % "postgresql" % postgresVersion,
   "com.github.dnvriend" %% "akka-persistence-jdbc" % "3.4.0",
 )
+
+enablePlugins(JavaAppPackaging)
+enablePlugins(DockerPlugin)
+enablePlugins(AshScriptPlugin)
+
+mainClass in Compile := Some("vigil.cesar.socialApp.Main")
+
+dockerBaseImage := "openjdk:8-jre"
+version in Docker := "latest"
+dockerExposedPorts := Seq(8080)
+dockerRepository := Some("cesar")
+daemonUser in Docker    := "daemon"
+
+//dockerCommands ++= Seq(
+//  Cmd("USER", "root"),
+//  ExecCmd("RUN", "apk", "add", "--no-cache", "bash")
+//)

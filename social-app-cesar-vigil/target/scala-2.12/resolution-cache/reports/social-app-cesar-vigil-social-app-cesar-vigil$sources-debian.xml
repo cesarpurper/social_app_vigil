@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="social-app-cesar-vigil"
+		module="social-app-cesar-vigil$sources"
+		revision="0.1.0-SNAPSHOT"
+		conf="debian"
+		confs="compile, runtime, test, provided, optional, universal, universal-docs, universal-src, docker, windows, linux, rpm, debian, compile-internal, runtime-internal, test-internal, plugin, pom, scala-tool"
+		date="20230217154555"/>
+	<dependencies>
+	</dependencies>
+</ivy-report>
