@@ -4,7 +4,7 @@
 		module="social-app-cesar-vigil$sbt_2.12"
 		revision="0.1.0-SNAPSHOT"
 		status="integration"
-		publication="20230217154551"
+		publication="20230217163812"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>

@@ -5265,9 +5265,9 @@
 [debug] == resolving dependencies social-app-cesar-vigil#social-app-cesar-vigil$sources;0.1.0-SNAPSHOT->jline#jline;2.14.6 [scala-tool->master]
 [debug] 	resolved ivy file produced in cache
 [debug] :: downloading artifacts ::
+[debug] 	[NOT REQUIRED] org.scala-lang#scala-library;2.12.8!scala-library.jar(src)
 [debug] 	[NOT REQUIRED] org.scalatest#scalatest_2.12;3.0.5!scalatest_2.12.jar(src)
 [debug] 	[NOT REQUIRED] com.typesafe.akka#akka-actor-testkit-typed_2.12;2.5.23!akka-actor-testkit-typed_2.12.jar(src)
-[debug] 	[NOT REQUIRED] org.scala-lang#scala-library;2.12.8!scala-library.jar(src)
 [debug] 	[NOT REQUIRED] org.scalactic#scalactic_2.12;3.0.5!scalactic_2.12.jar(src)
 [debug] 	[NOT REQUIRED] com.typesafe.akka#akka-http_2.12;10.1.7!akka-http_2.12.jar(src)
 [debug] 	[NOT REQUIRED] com.typesafe.akka#akka-stream_2.12;2.5.23!akka-stream_2.12.jar(src)
@@ -5275,33 +5275,33 @@
 [debug] 	[NOT REQUIRED] com.typesafe.slick#slick_2.12;3.2.3!slick_2.12.jar(src)
 [debug] 	[NOT REQUIRED] com.typesafe.akka#akka-http-spray-json_2.12;10.1.7!akka-http-spray-json_2.12.jar(src)
 [debug] 	[NOT REQUIRED] com.typesafe.akka#akka-persistence_2.12;2.5.23!akka-persistence_2.12.jar(src)
-[debug] 	[NOT REQUIRED] org.scala-lang.modules#scala-xml_2.12;1.0.6!scala-xml_2.12.jar(src)
 [debug] 	[NOT REQUIRED] io.spray#spray-json_2.12;1.3.5!spray-json_2.12.jar(src)
 [debug] 	[NOT REQUIRED] org.reactivestreams#reactive-streams;1.0.2!reactive-streams.jar(src)
 [debug] 	[NOT REQUIRED] com.typesafe.akka#akka-protobuf_2.12;2.5.23!akka-protobuf_2.12.jar(src)
-[debug] 	[NOT REQUIRED] com.github.dnvriend#akka-persistence-inmemory_2.12;2.5.15.2!akka-persistence-inmemory_2.12.jar(src)
 [debug] 	[NOT REQUIRED] com.typesafe.akka#akka-http-core_2.12;10.1.7!akka-http-core_2.12.jar(src)
 [debug] 	[NOT REQUIRED] com.typesafe.akka#akka-persistence-query_2.12;2.5.23!akka-persistence-query_2.12.jar(src)
+[debug] 	[NOT REQUIRED] org.scala-lang.modules#scala-xml_2.12;1.0.6!scala-xml_2.12.jar(src)
+[debug] 	[NOT REQUIRED] com.github.dnvriend#akka-persistence-inmemory_2.12;2.5.15.2!akka-persistence-inmemory_2.12.jar(src)
 [debug] 	[NOT REQUIRED] com.typesafe#ssl-config-core_2.12;0.3.7!ssl-config-core_2.12.jar(src)
 [debug] 	[NOT REQUIRED] ch.qos.logback#logback-core;1.2.10!logback-core.jar(src)
 [debug] 	[NOT REQUIRED] com.typesafe.akka#akka-testkit_2.12;2.5.23!akka-testkit_2.12.jar(src)
 [debug] 	[NOT REQUIRED] com.typesafe#config;1.3.3!config.jar(src)
+[debug] 	[NOT REQUIRED] com.github.dnvriend#akka-persistence-jdbc_2.12;3.4.0!akka-persistence-jdbc_2.12.jar(src)
 [debug] 	[NOT REQUIRED] org.scala-lang#scala-reflect;2.12.8!scala-reflect.jar(src)
 [debug] 	[NOT REQUIRED] org.scalaz#scalaz-core_2.12;7.2.28!scalaz-core_2.12.jar(src)
-[debug] 	[NOT REQUIRED] com.github.dnvriend#akka-persistence-jdbc_2.12;3.4.0!akka-persistence-jdbc_2.12.jar(src)
 [debug] 	[NOT REQUIRED] com.typesafe.akka#akka-http-testkit_2.12;10.1.7!akka-http-testkit_2.12.jar(src)
-[debug] 	[NOT REQUIRED] ch.qos.logback#logback-classic;1.2.10!logback-classic.jar(src)
 [debug] 	[NOT REQUIRED] com.typesafe.akka#akka-actor-typed_2.12;2.5.23!akka-actor-typed_2.12.jar(src)
-[debug] 	[NOT REQUIRED] com.typesafe.akka#akka-parsing_2.12;10.1.7!akka-parsing_2.12.jar(src)
+[debug] 	[NOT REQUIRED] ch.qos.logback#logback-classic;1.2.10!logback-classic.jar(src)
 [debug] 	[NOT REQUIRED] org.postgresql#postgresql;42.2.2!postgresql.jar(src)
+[debug] 	[NOT REQUIRED] com.typesafe.akka#akka-parsing_2.12;10.1.7!akka-parsing_2.12.jar(src)
 [debug] 	[NOT REQUIRED] com.typesafe.akka#akka-actor_2.12;2.5.23!akka-actor_2.12.jar(src)
 [debug] 	[NOT REQUIRED] com.typesafe.slick#slick-hikaricp_2.12;3.2.3!slick-hikaricp_2.12.jar(src)
 [debug] 	[NOT REQUIRED] org.slf4j#slf4j-api;1.7.32!slf4j-api.jar(src)
-[debug] 	[NOT REQUIRED] org.scala-lang#scala-compiler;2.12.8!scala-compiler.jar(src)
-[debug] 	[NOT REQUIRED] org.scala-lang.modules#scala-java8-compat_2.12;0.8.0!scala-java8-compat_2.12.jar(src)
 [debug] 	[NOT REQUIRED] com.zaxxer#HikariCP;2.5.1!HikariCP.jar(src)
+[debug] 	[NOT REQUIRED] org.scala-lang.modules#scala-java8-compat_2.12;0.8.0!scala-java8-compat_2.12.jar(src)
+[debug] 	[NOT REQUIRED] org.scala-lang#scala-compiler;2.12.8!scala-compiler.jar(src)
 [debug] 	[NOT REQUIRED] jline#jline;2.14.6!jline.jar(src)
-[debug] :: resolution report :: resolve 407ms :: artifacts dl 16ms
+[debug] :: resolution report :: resolve 750ms :: artifacts dl 12ms
 [debug] 	report for social-app-cesar-vigil#social-app-cesar-vigil$sources;0.1.0-SNAPSHOT compile produced in C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\resolution-cache\reports\social-app-cesar-vigil-social-app-cesar-vigil$sources-compile.xml
 [debug] 	report for social-app-cesar-vigil#social-app-cesar-vigil$sources;0.1.0-SNAPSHOT runtime produced in C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\resolution-cache\reports\social-app-cesar-vigil-social-app-cesar-vigil$sources-runtime.xml
 [debug] 	report for social-app-cesar-vigil#social-app-cesar-vigil$sources;0.1.0-SNAPSHOT test produced in C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\resolution-cache\reports\social-app-cesar-vigil-social-app-cesar-vigil$sources-test.xml
@@ -5321,4 +5321,4 @@
 [debug] 	report for social-app-cesar-vigil#social-app-cesar-vigil$sources;0.1.0-SNAPSHOT plugin produced in C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\resolution-cache\reports\social-app-cesar-vigil-social-app-cesar-vigil$sources-plugin.xml
 [debug] 	report for social-app-cesar-vigil#social-app-cesar-vigil$sources;0.1.0-SNAPSHOT pom produced in C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\resolution-cache\reports\social-app-cesar-vigil-social-app-cesar-vigil$sources-pom.xml
 [debug] 	report for social-app-cesar-vigil#social-app-cesar-vigil$sources;0.1.0-SNAPSHOT scala-tool produced in C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\resolution-cache\reports\social-app-cesar-vigil-social-app-cesar-vigil$sources-scala-tool.xml
-[debug] 	resolve done (407ms resolve - 16ms download)
+[debug] 	resolve done (750ms resolve - 12ms download)
