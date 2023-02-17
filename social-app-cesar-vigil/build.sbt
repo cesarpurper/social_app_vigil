@@ -7,7 +7,7 @@ lazy val root = (project in file("."))
     name := "social-app-cesar-vigil"
   )
 
-lazy val akkaVersion = "2.5.13"
+lazy val akkaVersion = "2.5.23"
 val akkaHttpVersion = "10.1.7"
 val scalaTestVersion = "3.0.5"
 val logbackVersion = "1.2.10"

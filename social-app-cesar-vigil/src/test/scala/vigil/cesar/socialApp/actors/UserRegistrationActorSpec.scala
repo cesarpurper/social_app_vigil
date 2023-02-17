@@ -31,6 +31,7 @@ class UserRegistrationActorSpec
 
   "UserRegistrationActor" should {
 
+    //default new user value
     val user = User(1, "cpurper@gmail.com", "Cesar Purper")
 
     "add an user and preserve it after restart" in {
@@ -38,11 +39,16 @@ class UserRegistrationActorSpec
       val persistenceId = "registrationManager1"
 
       val probe = TestProbe()
+
+      //we instantiate the actor
       val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], persistenceId)
 
+
+      //tell actor to register user
       userRegistrationActor ! RegisterUser(user.name, user.email)
       expectMsg(UserRegisteredAck)
 
+      //terminate the actor
       userRegistrationActor ! PoisonPill
 
       // wait for the actor to shutdown
@@ -52,40 +58,54 @@ class UserRegistrationActorSpec
       // creating a new actor
       val userRegistrationActor2 = system.actorOf(Props[UserRegistrationActor], persistenceId)
 
+      //get the user created to test the persistence
       userRegistrationActor2 ! GetUserById(user.userId)
       expectMsg(Some(user))
     }
 
     "not allow duplicate emails" in {
       val persistenceId = "registrationManager2"
+      //we instantiate the actor
       val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], persistenceId)
 
+      //tell actor to register user
       userRegistrationActor ! RegisterUser(user.name, user.email)
       expectMsg(UserRegisteredAck)
-      userRegistrationActor ! RegisterUser(user.name, user.email)
+
+      //tell actor to register user with same email
+      userRegistrationActor ! RegisterUser("New User Name", user.email)
       expectMsg(UserAlreadyExists)
     }
 
     "get user by a given email" in {
       val persistenceId = "registrationManager3"
+
+      //we instantiate the actor
       val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], persistenceId)
 
+
+      //tell actor to register user
       userRegistrationActor ! RegisterUser(user.name, user.email)
       expectMsg(UserRegisteredAck)
 
+      //tell actor to get user by email
       userRegistrationActor ! GetUserByEmail(user.email)
 
       expectMsg(Some(user))
     }
     "get user by a given id" in {
       val persistenceId = "registrationManager4"
+      //we instantiate the actor
       val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], persistenceId)
 
+      //tell actor to register user
       userRegistrationActor ! RegisterUser(user.name, user.email)
       expectMsg(UserRegisteredAck)
 
+      //tell actor to give user by given id
       userRegistrationActor ! GetUserById(user.userId)
 
+      //tell actor to get user by email
       expectMsg(Some(user))
     }
     "get all users" in {
@@ -93,21 +113,20 @@ class UserRegistrationActorSpec
       val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], persistenceId)
       val anotherUser = User(2, "test@gmail.com", "Test User")
 
+      //tell actor to register user
       userRegistrationActor ! RegisterUser(user.name, user.email)
       expectMsg(UserRegisteredAck)
 
+      //tell actor to register another user
       userRegistrationActor ! RegisterUser(anotherUser.name, anotherUser.email)
       expectMsg(UserRegisteredAck)
 
+      //tell actor to get all users
       userRegistrationActor ! GetAllUsers
 
       expectMsg(List(user, anotherUser))
     }
 
   }
-
-}
-object UserRegistrationActorSpec{
-
 
 }

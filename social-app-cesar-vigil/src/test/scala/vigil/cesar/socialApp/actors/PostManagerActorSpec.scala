@@ -15,6 +15,7 @@ import vigil.cesar.socialApp.model._
 import scala.concurrent.Await
 import scala.concurrent.duration.DurationInt
 import scala.util._
+
 class PostManagerActorSpec
   extends TestKit(ActorSystem("testUserRegistrationSystem", ConfigFactory.load("application-test.conf")))
     with WordSpecLike
@@ -39,21 +40,26 @@ class PostManagerActorSpec
   }
 
   "PostManagerActor" should {
+
+    //default new post value
     val newPost = Post(
       1,
       "example content",
       "exampleImage.jpg",
-      "15/02/2023 23:34:47",
+      "",
       "",
       "Cesar Purper",
       1)
 
+    //default user value
     val user = User(1, "Cesar Purper", "cpurper@gmail.com")
 
-    "add post and preserve it after restart" in {
+    "create a post and preserve it after restart" in {
       val persistenceId = "postManager1"
 
       val probe = TestProbe()
+
+      //instantiating actors
       val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], "registrationManager1")
       val postManagerActor = system.actorOf(Props[PostManagerActor], persistenceId)
 
@@ -99,7 +105,7 @@ class PostManagerActorSpec
     "edit an post" in {
       val persistenceId = "postManager2"
 
-      val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], "registrationManager1")
+      val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], "registrationManager2")
       val postManagerActor = system.actorOf(Props[PostManagerActor], persistenceId)
 
 
@@ -157,6 +163,96 @@ class PostManagerActorSpec
           post.image shouldBe editedImg
         }
       }
+    }
+
+    "get sorted posts" in {
+      val persistenceId = "postManager3"
+
+      val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], "registrationManager3")
+      val postManagerActor = system.actorOf(Props[PostManagerActor], persistenceId)
+      val anotherUser = User(2, "test@gmail.com", "Test User")
+
+
+      //we populate the journal with the first user, its id will be 1
+      userRegistrationActor ! RegisterUser(user.name, user.email)
+      //user registraction actor will acknowledge with UserRegisteredAck
+      expectMsg(UserRegisteredAck)
+
+      //we populate the journal with the first user, its id will be 1
+      userRegistrationActor ! RegisterUser(anotherUser.name, anotherUser.email)
+      //user registraction actor will acknowledge with UserRegisteredAck
+      expectMsg(UserRegisteredAck)
+
+
+      //tell post manager actor to create post with given parameters
+      postManagerActor ! CreatePost(newPost.contents, newPost.image, user)
+      val firstPostRegistered = expectMsgPF() {
+        case PostRegisteredAck(post) => {
+          post
+        }
+      }
+
+
+      //tell post manager actor to create post with given parameters
+      postManagerActor ! CreatePost("secondPost", "", anotherUser)
+      val secondPostRegistered = expectMsgPF() {
+        case PostRegisteredAck(post) => {
+          post
+        }
+      }
+
+      //test ascending order
+      postManagerActor ! GetPostsWithParams(true, 0)
+      expectMsg(List(firstPostRegistered, secondPostRegistered))
+
+      //test descending order
+      postManagerActor ! GetPostsWithParams(false, 0)
+      expectMsg(List(secondPostRegistered, firstPostRegistered))
+
+
+
+    }
+
+    "get posts by user id" in {
+
+      val persistenceId = "postManager4"
+
+      val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], "registrationManager4")
+      val postManagerActor = system.actorOf(Props[PostManagerActor], persistenceId)
+      val anotherUser = User(2, "test@gmail.com", "Test User")
+
+
+      //we populate the journal with the first user, its id will be 1
+      userRegistrationActor ! RegisterUser(user.name, user.email)
+      //user registraction actor will acknowledge with UserRegisteredAck
+      expectMsg(UserRegisteredAck)
+
+      //we populate the journal with the first user, its id will be 1
+      userRegistrationActor ! RegisterUser(anotherUser.name, anotherUser.email)
+      //user registraction actor will acknowledge with UserRegisteredAck
+      expectMsg(UserRegisteredAck)
+
+
+      //tell post manager actor to create post with given parameters
+      postManagerActor ! CreatePost(newPost.contents, newPost.image, user)
+      val firstPostRegistered = expectMsgPF() {
+        case PostRegisteredAck(post) => {
+          post
+        }
+      }
+
+      //tell post manager actor to create post with given parameters
+      postManagerActor ! CreatePost("secondPost", "", anotherUser)
+      val secondPostRegistered = expectMsgPF() {
+        case PostRegisteredAck(post) => {
+          post
+        }
+      }
+
+      //test filtering by user id 2
+      postManagerActor ! GetPostsWithParams(true, 2)
+      expectMsg(List(secondPostRegistered))
+
     }
   }
 
