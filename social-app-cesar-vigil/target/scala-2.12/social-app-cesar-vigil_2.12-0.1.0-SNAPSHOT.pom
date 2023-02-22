@@ -71,6 +71,11 @@
             <artifactId>akka-persistence-jdbc_2.12</artifactId>
             <version>3.4.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.jason-goodwin</groupId>
+            <artifactId>authentikat-jwt_2.12</artifactId>
+            <version>0.4.5</version>
+        </dependency>
     </dependencies>
     <repositories>
         <repository>

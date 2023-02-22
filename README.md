@@ -6,4 +6,10 @@ cd social-app-cesar-vigil
 sbt docker:publishLocal
 ```
 
-After this the 
+After this the docker image will be ready to be run in the local docker daemon
+Just go back to root folder and execute docker compose:
+
+```
+cd ..
+docker-compose up -d
+```

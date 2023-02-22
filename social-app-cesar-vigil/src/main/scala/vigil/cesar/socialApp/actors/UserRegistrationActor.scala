@@ -14,6 +14,8 @@ object UserRegistrationActor {
   case object UserAlreadyExists
   case object GetAllUsers
   case class GetUserByEmail(email: String)
+
+  case class GetUserByEmailAndName(name: String, email: String)
   case class GetUserById(userId: Int)
 
 
@@ -21,6 +23,75 @@ object UserRegistrationActor {
 
 //events
   case class UserRegistered(user: User)
+
+
+  /**
+   *
+   * This helper function returns a Boolean indicating if the given email is present in the given Map[Int, User]
+   *
+   * @param map
+   * @param email
+   * @return Boolean
+   */
+  private def isEmailInMap(map: Map[Int, User], email: String): Boolean = {
+    val result = map.filter(x => x._2.email == email)
+    !result.isEmpty
+  }
+
+  /**
+   *
+   * This functions returns a Option[User] from the map of the given email
+   *
+   * @param map
+   * @param email
+   * @return
+   */
+  private def getUserByEmailFromMap(map: Map[Int, User], email: String): Option[User] = {
+    val result: Option[(Int, User)] = map.find { case (k, v) =>
+      v.email == email
+    }
+
+    result.map {
+      case (userId, user) => {
+        user
+      }
+    }
+  }
+
+  /**
+   * This functions returns a Option[User] from the user map of the given email and name
+   *
+   * @param map
+   * @param name
+   * @param email
+   * @return
+   */
+  private def getUserByEmailAndNameFromMap(map: Map[Int, User], name: String, email: String): Option[User] = {
+    val result: Option[(Int, User)] = map.find { case (k, v) =>
+      (v.email == email && v.name == name)
+    }
+
+    result.map {
+      case (userId, user) => {
+        user
+      }
+    }
+  }
+
+  /**
+   *
+   * Return all Users in the map as a List[User]
+   *
+   * @param postsMap
+   * @return
+   */
+  private def getAllUsersAsList(users: Map[Int, User]): List[User] = {
+    val allPosts = for {
+      (key, value) <- users
+    } yield value
+    allPosts.toList
+  }
+
 
 }
 case class UserRegistrationActor() extends PersistentActor with ActorLogging {
@@ -66,6 +137,10 @@ case class UserRegistrationActor() extends PersistentActor with ActorLogging {
       val user = users.get(userId)
       sender() ! user
     }
+    case GetUserByEmailAndName(userName: String, userEmail: String) => {
+      val user = getUserByEmailAndNameFromMap(users, userName, userEmail)
+      sender() ! user
+    }
     // case to handle the GetUserById message
     //this returns an List[User] to the sender, either an empty list or a list with all users
     case GetAllUsers => {
@@ -89,54 +164,6 @@ case class UserRegistrationActor() extends PersistentActor with ActorLogging {
         currentId += 1
         context.become(listening(currentId, users))
     }
-  }
-
-
-  /**
-   *
-   * This helper function returns a Boolean indicating if the given email is present in the given Map[Int, User]
-   *
-   * @param map
-   * @param email
-   * @return Boolean
-   */
-  private def isEmailInMap(map: Map[Int, User], email: String): Boolean = {
-    val result = map.filter(x => x._2.email == email)
-    !result.isEmpty
-  }
-
-  /**
-   *
-   * This functions returns a Option[User] from the map of the given email
-   *
-   * @param map
-   * @param email
-   * @return
-   */
-  private def getUserByEmailFromMap(map: Map[Int, User], email: String): Option[User] = {
-    val result: Option[(Int, User)] = map.find { case (k, v) =>
-      v.email == email
-    }
-
-    result.map {
-      case (userId, user) =>{
-        user
-      }
-    }
-  }
-
-  /**
-   *
-   * Return all Users in the map as a List[User]
-   *
-   * @param postsMap
-   * @return
-   */
-  private def getAllUsersAsList(users: Map[Int, User]): List[User] = {
-    val allPosts = for {
-      (key, value) <- users
-    } yield value
-    allPosts.toList
   }
 
 }

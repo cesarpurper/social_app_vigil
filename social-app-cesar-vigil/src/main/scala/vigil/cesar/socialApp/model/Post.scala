@@ -11,7 +11,7 @@ trait PostJsonProtocol extends DefaultJsonProtocol {
 }
 case class Post(postId: Int, contents: String, image: String, dateCreated: String, dateEdited: String, author: String, authorId: Int) extends Ordered[Post]{
 
-  //the overriden implementation from Ordered to compare to posts according to the date they were created.
+  //the overwritten implementation from Ordered to compare to posts according to the date they were created.
   //this will later be used to sort posts in a list
   override def compare(that: Post): Int = Utils.convertStringToDate(dateCreated).compareTo(Utils.convertStringToDate(that.dateCreated))
 }

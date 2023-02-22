@@ -4,7 +4,7 @@
 		module="social-app-cesar-vigil_2.12"
 		revision="0.1.0-SNAPSHOT"
 		status="integration"
-		publication="20230217154253"
+		publication="20230221193141"
 	>
 		<description>
 		social-app-cesar-vigil
@@ -51,5 +51,6 @@
 		<dependency org="com.typesafe.akka" name="akka-http-testkit_2.12" rev="10.1.7" conf="compile->default(compile)"/>
 		<dependency org="org.postgresql" name="postgresql" rev="42.2.2" conf="compile->default(compile)"/>
 		<dependency org="com.github.dnvriend" name="akka-persistence-jdbc_2.12" rev="3.4.0" conf="compile->default(compile)"/>
+		<dependency org="com.jason-goodwin" name="authentikat-jwt_2.12" rev="0.4.5" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>

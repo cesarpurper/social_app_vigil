@@ -32,7 +32,7 @@ class UserRegistrationActorSpec
   "UserRegistrationActor" should {
 
     //default new user value
-    val user = User(1, "cpurper@gmail.com", "Cesar Purper")
+    val user = User(1, "Cesar Purper", "cpurper@gmail.com")
 
     "add an user and preserve it after restart" in {
 
@@ -111,7 +111,7 @@ class UserRegistrationActorSpec
     "get all users" in {
       val persistenceId = "registrationManager5"
       val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], persistenceId)
-      val anotherUser = User(2, "test@gmail.com", "Test User")
+      val anotherUser = User(2, "Test User", "test@gmail.com")
 
       //tell actor to register user
       userRegistrationActor ! RegisterUser(user.name, user.email)
@@ -125,6 +125,25 @@ class UserRegistrationActorSpec
       userRegistrationActor ! GetAllUsers
 
       expectMsg(List(user, anotherUser))
+    }
+    "get user by name and email" in {
+      val persistenceId = "registrationManager6"
+      val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], persistenceId)
+      val anotherUser = User(2, "Test User", "test@gmail.com")
+
+      //tell actor to register user
+      userRegistrationActor ! RegisterUser(user.name, user.email)
+      expectMsg(UserRegisteredAck)
+
+      //tell actor to register another user
+      userRegistrationActor ! RegisterUser(anotherUser.name, anotherUser.email)
+      expectMsg(UserRegisteredAck)
+
+      //tell actor to get all users
+      userRegistrationActor ! GetUserByEmailAndName(anotherUser.name, anotherUser.email)
+
+      expectMsg(Some(anotherUser))
+
     }
 
   }

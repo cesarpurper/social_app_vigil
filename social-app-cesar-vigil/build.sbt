@@ -16,6 +16,7 @@ val scalaTestVersion = "3.0.5"
 val logbackVersion = "1.2.10"
 lazy val postgresVersion = "42.2.2"
 lazy val json4sVersion = "3.2.11"
+val authentikatJwt = "0.4.5"
 
 // some libs are available in Bintray's JCenter
 resolvers += Resolver.jcenterRepo
@@ -43,21 +44,19 @@ libraryDependencies ++= Seq(
   // JDBC with PostgreSQL
   "org.postgresql" % "postgresql" % postgresVersion,
   "com.github.dnvriend" %% "akka-persistence-jdbc" % "3.4.0",
+
+  // JWT library
+  "com.jason-goodwin" %% "authentikat-jwt" % authentikatJwt
 )
 
 enablePlugins(JavaAppPackaging)
 enablePlugins(DockerPlugin)
 enablePlugins(AshScriptPlugin)
 
-mainClass in Compile := Some("vigil.cesar.socialApp.Main")
+mainClass in Compile := Some("vigil.cesar.socialApp.Main2")
 
 dockerBaseImage := "openjdk:8-jre-alpine"
 version in Docker := "latest"
 dockerExposedPorts := Seq(8080)
 dockerRepository := Some("cesar")
 daemonUser in Docker    := "daemon"
-
-//dockerCommands ++= Seq(
-//  Cmd("USER", "root"),
-//  ExecCmd("RUN", "apk", "add", "--no-cache", "bash")
-//)
