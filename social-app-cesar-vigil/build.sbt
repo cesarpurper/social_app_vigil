@@ -48,6 +48,7 @@ libraryDependencies ++= Seq(
   // JWT library
   "com.jason-goodwin" %% "authentikat-jwt" % authentikatJwt
 )
+fork in run := true
 
 enablePlugins(JavaAppPackaging)
 enablePlugins(DockerPlugin)
