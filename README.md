@@ -109,7 +109,7 @@ This endpoint is expecting data to come as Form fields.
 #### Create a Post
 
 ```http
-  POST /api/socialApp/post/create/${userId}
+  POST /api/socialApp/posts/create/${userId}
 ```
 
 | Parameter   | Type       | Description                                   |
@@ -124,7 +124,7 @@ This endpoint is expecting post data to come as Form fields.
 #### Edit a Post
 
 ```http
-  POST /api/socialApp/user/edit/${postId}
+  POST /api/socialApp/posts/edit/${postId}
 ```
 
 | Parameter   | Type       | Description                                   |
