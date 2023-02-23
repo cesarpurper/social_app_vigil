@@ -254,6 +254,65 @@ class PostManagerActorSpec
       expectMsg(List(secondPostRegistered))
 
     }
+
+    "edit a post and preserve it after restart" in {
+
+      val persistenceId = "postManager5"
+
+      val probe = TestProbe()
+
+      //instantiating actors
+      val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], "registrationManager5")
+      val postManagerActor = system.actorOf(Props[PostManagerActor], persistenceId)
+
+
+      //we populate the journal with the first user, its id will be 1
+      userRegistrationActor ! RegisterUser(user.name, user.email)
+      //user registraction actor will acknowledge with UserRegisteredAck
+      expectMsg(UserRegisteredAck)
+
+
+      //tell post manager actor to create post with given parameters
+      postManagerActor ! CreatePost(newPost.contents, newPost.image, user)
+
+      val postPersisted = expectMsgPF() {
+        case PostRegisteredAck(post) => {
+          post.contents shouldBe newPost.contents
+          post.image shouldBe newPost.image
+
+          post
+        }
+      }
+
+      val editedContent = "edited content"
+      val editedImg = "editedImg.jpg"
+
+      //testing changing image
+      postManagerActor ! EditPost(postPersisted.postId, editedContent, editedImg)
+
+      expectMsg(PostEditedAck)
+
+      //terminates post manager actor
+      postManagerActor ! PoisonPill
+
+      // wait for the actor to shutdown
+      probe.watch(postManagerActor)
+      probe.expectTerminated(postManagerActor)
+
+      //recreate post manager actor to check if it is recovering as it should
+      val postManagerActor2 = system.actorOf(Props[PostManagerActor], persistenceId)
+
+      postManagerActor2 ! GetPostsWithParams(true, 1)
+
+      expectMsgPF() {
+        case List(post: Post) => {
+          post.postId shouldBe postPersisted.postId
+          post.contents shouldBe editedContent
+          post.image shouldBe editedImg
+        }
+      }
+
+    }
   }
 
 }

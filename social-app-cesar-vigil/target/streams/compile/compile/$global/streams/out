@@ -1,9 +1,2 @@
-[0m[[0m[33mwarn[0m] [0m[0mC:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\src\main\scala\vigil\cesar\socialApp\routes\LoginRoutes.scala:36:40: non-variable type argument vigil.cesar.socialApp.model.User in type pattern Option[vigil.cesar.socialApp.model.User] is unchecked since it is eliminated by erasure[0m
-[0m[[0m[33mwarn[0m] [0m[0m              case Success(optionUser: Option[User]) => {[0m
-[0m[[0m[33mwarn[0m] [0m[0m                                       ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mC:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\src\main\scala\vigil\cesar\socialApp\routes\LoginRoutes.scala:33:92: match may not be exhaustive.[0m
-[0m[[0m[33mwarn[0m] [0m[0mIt would fail on the following input: Success((x: Any forSome x not in Option[?]))[0m
-[0m[[0m[33mwarn[0m] [0m[0m            onComplete(userRegistrationActor ? GetUserByEmailAndName(userName, userEmail)) {[0m
-[0m[[0m[33mwarn[0m] [0m[0m                                                                                           ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mthere were two feature warnings; re-run with -feature for details[0m
-[0m[[0m[33mwarn[0m] [0m[0mthree warnings found[0m
+[debug] Acquiring lock on file C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\project\target\.sbt-compilation-infos\root-compile\.sbt-idea-lock ...
+[debug] Releasing lock on file C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\project\target\.sbt-compilation-infos\root-compile\.sbt-idea-lock.
