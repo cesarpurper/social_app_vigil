@@ -8,14 +8,13 @@ The solution was developed using scala and the Akka toolkit.
 
 The architecture looks as follows:
 
-[Imgur](https://imgur.com/McBzVz3)
 
-![Architecture](https://imgur.com/McBzVz3)
+![Architecture](social-app-architecture.jpeg)
 
 Using postgres as database the app has two actors to persist events, the PostManagerActor and the UserRegistrationActor. 
 Between these actors and the database there is a event adapter to each actor. this event adapter is responsble to convert actor events into database events. This adapter helps with schema evolution, since the actor is not aware of these database schema changes, it just send the same event.
 
-The HttpApi handles all web server related stuff, including authentiaction and its start routine. It creates the routing with the routes objects.
+The HttpApi handles all web server related work, including authentiaction and its start routine. It creates the routing with the routes objects.
 
 The webserver routes are split in 4 objects, UserRoute, PostRoute, ImageRoute and LoginRoute. The HttpApi actor consolidates all these objects in a unique routing, putting the routes that need authentication under the "authenticated" Directive, created inside the HttpApi actor. This Directive will get the jwt token from request, checks its validity and get its claims.
 
