@@ -28,6 +28,7 @@ There is a NetworkManagerActor in the actors package, this actor was an attempt 
 ## Running tests
 
 To run tests open the app project folder and run the tests
+*Tests are not running properly when run with sbt. They work when testing via IDE, though. Must fix*
 
 ```bash
   cd social-app-cesar-vigil
