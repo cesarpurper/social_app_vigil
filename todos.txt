@@ -1,7 +1,0 @@
-- change file logic to an actor
-- create some kind of authentication
-- check extension of sent image file
-- configure serializer
-- create tests for routes
-- change ports and address values for environment variables
-- create a notification actor the broadcast notifications to multiple sources
