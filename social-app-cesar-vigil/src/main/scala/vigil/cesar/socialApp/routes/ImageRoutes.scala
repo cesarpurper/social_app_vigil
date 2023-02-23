@@ -9,7 +9,7 @@ import java.io.File
 
 object ImageRoutes extends BasicRoute {
 
-  def imgRoutes(): Route = {
+  def imgRoutes(): Route =
 
   //this serves the image from the imgs/ folder
     pathPrefix("image"){
@@ -17,7 +17,6 @@ object ImageRoutes extends BasicRoute {
         complete(HttpEntity.fromFile(MediaTypes.`image/webp`, new File(IMAGE_FOLDER + imageFilename)))
       }
     }
-  }
 
 
 }

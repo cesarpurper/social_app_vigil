@@ -42,12 +42,14 @@ object PostRoutes extends BasicRoute{
                   val finalFileName = System.currentTimeMillis() + "_" + metadata.fileName
                   //this directive runs when the file is already in disk
                   onComplete(byteSource.runWith(FileIO.toPath(Paths.get(IMAGE_FOLDER + finalFileName)))) {
-                    case Failure(exception) => complete(StatusCodes.BadRequest)
+                    case Failure(exception) =>
+                      complete(StatusCodes.BadRequest)
                     case Success(value) => {
                       val userFuture: Future[Option[User]] = (userRegistrationActor ? GetUserById(userId)).mapTo[Option[User]]
                       complete {
                         userFuture.map {
-                          case None => StatusCodes.BadRequest
+                          case None =>
+                            StatusCodes.BadRequest
                           case Some(user) => {
                             //check if it was sent any image in the form
                             if (image != "")

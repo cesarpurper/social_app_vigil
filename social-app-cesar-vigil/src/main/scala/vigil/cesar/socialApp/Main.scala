@@ -15,7 +15,10 @@ object Main extends App{
   implicit val system = ActorSystem("SocialApp", ConfigFactory.load())
   implicit val materializer = ActorMaterializer()
 
-  val IMAGE_FOLDER = "src/main/resources/imgs/"
+  //val IMAGE_FOLDER = "src/main/resources/imgs/"
+  //I have to use the path like this when dockerized because of linux
+  //TODO: Maybe change this to environment variable
+  val IMAGE_FOLDER = "/tmp/"
 
 
 

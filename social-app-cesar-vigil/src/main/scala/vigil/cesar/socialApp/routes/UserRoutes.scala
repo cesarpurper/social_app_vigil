@@ -22,8 +22,8 @@ object UserRoutes extends BasicRoute {
 
   def userCreateRoute(): Route = {
     //path for creating a user
-    pathPrefix("user"){
-      (path("create") & post) {
+    pathPrefix("register"){
+      (path("user") & post) {
         println("user1")
         //it gets data from Multipart.FormData, with the name fields passed as parameters
         formFields('userName, 'userEmail) { (userName, userEmail) =>
@@ -36,9 +36,9 @@ object UserRoutes extends BasicRoute {
   }
 
 
-  def userRoutesWithoutCreate(): Route = //path for getting user date 'api/socialApp/user/{id}
+  def userRoutesWithoutCreate(): Route =  //path for getting user date 'api/socialApp/user/{id}
     //path for getting user date 'api/socialApp/user/{id}
-    pathPrefix("user") {
+    pathPrefix("user"){
       (path(IntNumber) & get) { userId =>
         //TODO: when user doesnt exist it is replying 'null'. Maybe try to respond with BAD REQUEST
         complete(
@@ -48,15 +48,16 @@ object UserRoutes extends BasicRoute {
             .map(toHttpEntity)
         )
       } ~
-      //get all users
-      (path("all") & get) {
-        complete(
-          (userRegistrationActor ? GetAllUsers)
-            .mapTo[List[User]]
-            .map(_.toJson.prettyPrint)
-            .map(toHttpEntity)
-        )
-      }
+        //get all users
+        (path("all") & get) {
+          complete(
+            (userRegistrationActor ? GetAllUsers)
+              .mapTo[List[User]]
+              .map(_.toJson.prettyPrint)
+              .map(toHttpEntity)
+          )
+        }
     }
+
 
 }

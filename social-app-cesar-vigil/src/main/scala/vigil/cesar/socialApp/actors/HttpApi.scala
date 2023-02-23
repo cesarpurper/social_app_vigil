@@ -54,7 +54,7 @@ object HttpApi extends DefaultJsonProtocol
   def routes: Route =
     pathPrefix("api" / "socialApp") {
 
-      securedContent ~ loginRoutes() ~ userCreateRoute()
+      loginRoutes() ~ userCreateRoute() ~ securedContent
     }
 
   def apply(host: String, port: Int, userRegistrationActor: ActorRef) = Props(new HttpApi(host, port, userRegistrationActor))

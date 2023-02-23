@@ -56,7 +56,7 @@ enablePlugins(AshScriptPlugin)
 
 mainClass in Compile := Some("vigil.cesar.socialApp.Main")
 
-dockerBaseImage := "openjdk:8-jre-alpine"
+dockerBaseImage := "openjdk:8-jre"
 version in Docker := "latest"
 dockerExposedPorts := Seq(8080)
 dockerRepository := Some("cesar")
