@@ -294,6 +294,7 @@ class PostManagerActorSpec
       //terminates post manager actor
       postManagerActor ! PoisonPill
 
+
       // wait for the actor to shutdown
       probe.watch(postManagerActor)
       probe.expectTerminated(postManagerActor)

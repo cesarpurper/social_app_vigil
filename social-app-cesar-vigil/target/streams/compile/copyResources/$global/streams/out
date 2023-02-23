@@ -1,5 +1,5 @@
-[debug] Copy resource mappings: 
-[debug] 	(C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\src\main\resources\application-test.conf,C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\classes\application-test.conf)
-[debug] 	(C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\src\main\resources\application.conf,C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\classes\application.conf)
-[debug] 	(C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\src\main\resources\imgs,C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\classes\imgs)
-[debug] 	(C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\src\main\resources\logback.xml,C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\classes\logback.xml)
+[0m[[0m[0mdebug[0m] [0m[0mCopy resource mappings: [0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\src\main\resources\application-test.conf,C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\classes\application-test.conf)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\src\main\resources\application.conf,C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\classes\application.conf)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\src\main\resources\imgs,C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\classes\imgs)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\src\main\resources\logback.xml,C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\classes\logback.xml)[0m

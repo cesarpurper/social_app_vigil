@@ -4,7 +4,7 @@
 		module="social-app-cesar-vigil-build"
 		revision="0.1.0-SNAPSHOT"
 		status="integration"
-		publication="20230223004720"
+		publication="20230223012115"
 		e:sbtVersion="1.0" e:scalaVersion="2.12"
 	>
 		<description>
