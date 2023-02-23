@@ -7,7 +7,6 @@ import com.typesafe.config.ConfigFactory
 import org.scalatest._
 import akka.pattern.ask
 import akka.util.Timeout
-import vigil.cesar.socialApp.Main.system
 import vigil.cesar.socialApp.actors.PostManagerActor._
 import vigil.cesar.socialApp.actors.UserRegistrationActor._
 import vigil.cesar.socialApp.model._
@@ -55,12 +54,12 @@ class PostManagerActorSpec
     val user = User(1, "Cesar Purper", "cpurper@gmail.com")
 
     "create a post and preserve it after restart" in {
-      val persistenceId = "postManager1"
+      val persistenceId = "postManagerTest1"
 
       val probe = TestProbe()
 
       //instantiating actors
-      val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], "registrationManager1")
+      val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], "registrationManagerTest1")
       val postManagerActor = system.actorOf(Props[PostManagerActor], persistenceId)
 
 
@@ -103,9 +102,9 @@ class PostManagerActorSpec
     }
 
     "edit an post" in {
-      val persistenceId = "postManager2"
+      val persistenceId = "postManagerTest2"
 
-      val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], "registrationManager2")
+      val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], "registrationManagerTest2")
       val postManagerActor = system.actorOf(Props[PostManagerActor], persistenceId)
 
 
@@ -166,9 +165,9 @@ class PostManagerActorSpec
     }
 
     "get sorted posts" in {
-      val persistenceId = "postManager3"
+      val persistenceId = "postManagerTest3"
 
-      val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], "registrationManager3")
+      val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], "registrationManagerTest3")
       val postManagerActor = system.actorOf(Props[PostManagerActor], persistenceId)
       val anotherUser = User(2, "test@gmail.com", "Test User")
 
@@ -215,9 +214,9 @@ class PostManagerActorSpec
 
     "get posts by user id" in {
 
-      val persistenceId = "postManager4"
+      val persistenceId = "postManagerTest4"
 
-      val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], "registrationManager4")
+      val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], "registrationManagerTest4")
       val postManagerActor = system.actorOf(Props[PostManagerActor], persistenceId)
       val anotherUser = User(2, "test@gmail.com", "Test User")
 
@@ -257,12 +256,12 @@ class PostManagerActorSpec
 
     "edit a post and preserve it after restart" in {
 
-      val persistenceId = "postManager5"
+      val persistenceId = "postManagerTest5"
 
       val probe = TestProbe()
 
       //instantiating actors
-      val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], "registrationManager5")
+      val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], "registrationManagerTest5")
       val postManagerActor = system.actorOf(Props[PostManagerActor], persistenceId)
 
 

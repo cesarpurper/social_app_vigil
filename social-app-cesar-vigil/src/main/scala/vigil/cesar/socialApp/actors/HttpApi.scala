@@ -46,16 +46,15 @@ object HttpApi extends DefaultJsonProtocol
     }
 
 
-  private def securedContent: Route = get {
+  private def securedContent: Route =
     authenticated { claims =>
       //TODO: Use claims to check whether the user is trying to edit own post
-      userRoutes ~ postRoutes ~ imgRoutes
+      postRoutes() ~ userRoutesWithoutCreate() ~ imgRoutes()
     }
-  }
   def routes: Route =
     pathPrefix("api" / "socialApp") {
 
-      loginRoutes ~ securedContent
+      securedContent ~ loginRoutes() ~ userCreateRoute()
     }
 
   def apply(host: String, port: Int, userRegistrationActor: ActorRef) = Props(new HttpApi(host, port, userRegistrationActor))
@@ -74,6 +73,7 @@ final class HttpApi(host: String, port: Int, userRegistrationActor: ActorRef) ex
   override def receive: Receive = {
     case ServerBinding(address) =>
       log.info("Server successfully bound at {}:{}", address.getHostName, address.getPort)
+      //user admin is created just for initialization. without it we can't register the first user
     case Failure(cause) =>
       log.error("Failed to bind server", cause)
       context.system.terminate()

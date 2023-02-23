@@ -22,8 +22,12 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\classes\imgs\1676495233703_[0m
 [0m[[0m[0mdebug[0m] [0m[0m	vigil\cesar\socialApp\eventadapters\UserRegistrationEventAdapter.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\classes\vigil\cesar\socialApp\eventadapters\UserRegistrationEventAdapter.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vigil\cesar\socialApp\eventadapters\PostManagerEventAdapter$WrittenPostEdit.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\classes\vigil\cesar\socialApp\eventadapters\PostManagerEventAdapter$WrittenPostEdit.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	vigil\cesar\socialApp\model\UserJsonProtocol.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\classes\vigil\cesar\socialApp\model\UserJsonProtocol.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vigil\cesar\socialApp\eventadapters\PostManagerEventAdapter$WrittenPostEdit$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\classes\vigil\cesar\socialApp\eventadapters\PostManagerEventAdapter$WrittenPostEdit$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	vigil[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\cpurp\Documents\social_app_vigil\social-app-cesar-vigil\target\scala-2.12\classes\vigil[0m
 [0m[[0m[0mdebug[0m] [0m[0m	vigil\cesar\socialApp\actors\UserRegistrationActor$UserRegistered$.class[0m

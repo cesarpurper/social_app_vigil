@@ -109,7 +109,7 @@ This endpoint is expecting data to come as Form fields.
 #### Create a Post
 
 ```http
-  POST /api/socialApp/user/create/${userId}
+  POST /api/socialApp/post/create/${userId}
 ```
 
 | Parameter   | Type       | Description                                   |
@@ -169,6 +169,7 @@ This endpoint is expecting post data to come as Form fields.
 
 ## Future Improvements
 
+- Implement snapshot logic
 - Change file logic to a separate actor
 - Check extension of sent image file
   - When the file is being uploaded, the app not checks it for a image file

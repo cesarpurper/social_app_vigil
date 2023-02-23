@@ -3,7 +3,7 @@ package vigil.cesar.socialApp.routes
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity, StatusCodes}
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
-import vigil.cesar.socialApp.Main2.{system, userRegistrationActor}
+import vigil.cesar.socialApp.Main.{system, userRegistrationActor}
 import vigil.cesar.socialApp.actors.UserRegistrationActor._
 import vigil.cesar.socialApp.model.{User, UserJsonProtocol}
 import akka.pattern.ask
@@ -20,11 +20,26 @@ object UserRoutes extends BasicRoute {
 
   implicit val timeout: Timeout = Timeout(2 seconds)
 
+  def userCreateRoute(): Route = {
+    //path for creating a user
+    pathPrefix("user"){
+      (path("create") & post) {
+        println("user1")
+        //it gets data from Multipart.FormData, with the name fields passed as parameters
+        formFields('userName, 'userEmail) { (userName, userEmail) =>
+          //tell user registration actor to register given user
+          userRegistrationActor ! RegisterUser(userName, userEmail)
+          complete(StatusCodes.OK)
+        }
+      }
+    }
+  }
 
-  val userRoutes: Route = //path for getting user date 'api/socialApp/user/{id}
+
+  def userRoutesWithoutCreate(): Route = //path for getting user date 'api/socialApp/user/{id}
+    //path for getting user date 'api/socialApp/user/{id}
     pathPrefix("user") {
-      //path for getting user date 'api/socialApp/user/{id}
-      (get & path(IntNumber)) { userId =>
+      (path(IntNumber) & get) { userId =>
         //TODO: when user doesnt exist it is replying 'null'. Maybe try to respond with BAD REQUEST
         complete(
           (userRegistrationActor ? GetUserById(userId))
@@ -33,24 +48,15 @@ object UserRoutes extends BasicRoute {
             .map(toHttpEntity)
         )
       } ~
-        //path for creating a user
-        (post & path("create")) {
-          //it gets data from Multipart.FormData, with the name fields passed as parameters
-          formFields('userName, 'userEmail) { (userName, userEmail) =>
-            //tell user registration actor to register given user
-            userRegistrationActor ! RegisterUser(userName, userEmail)
-            complete(StatusCodes.OK)
-          }
-        } ~
-        //get all users
-        (get & path("all")) {
-          complete(
-            (userRegistrationActor ? GetAllUsers)
-              .mapTo[List[User]]
-              .map(_.toJson.prettyPrint)
-              .map(toHttpEntity)
-          )
-        }
+      //get all users
+      (path("all") & get) {
+        complete(
+          (userRegistrationActor ? GetAllUsers)
+            .mapTo[List[User]]
+            .map(_.toJson.prettyPrint)
+            .map(toHttpEntity)
+        )
+      }
     }
 
 }

@@ -5,7 +5,6 @@ import akka.persistence.inmemory.extension.{InMemoryJournalStorage, StorageExten
 import akka.testkit._
 import com.typesafe.config.ConfigFactory
 import org.scalatest._
-import vigil.cesar.socialApp.Main.system
 import vigil.cesar.socialApp.actors.UserRegistrationActor._
 import vigil.cesar.socialApp.model._
 

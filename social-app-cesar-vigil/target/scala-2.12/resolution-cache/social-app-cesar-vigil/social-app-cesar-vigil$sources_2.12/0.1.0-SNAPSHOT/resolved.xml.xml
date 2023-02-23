@@ -4,7 +4,7 @@
 		module="social-app-cesar-vigil$sources_2.12"
 		revision="0.1.0-SNAPSHOT"
 		status="integration"
-		publication="20230222120559"
+		publication="20230222232503"
 	/>
 	<configurations>
 		<conf name="default" visibility="public" description=""/>

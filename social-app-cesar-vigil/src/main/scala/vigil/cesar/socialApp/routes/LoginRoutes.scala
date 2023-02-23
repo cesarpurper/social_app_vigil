@@ -5,7 +5,7 @@ import akka.http.scaladsl.model.headers.RawHeader
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import spray.json.DefaultJsonProtocol
-import vigil.cesar.socialApp.Main2.{userRegistrationActor}
+import vigil.cesar.socialApp.Main.userRegistrationActor
 import vigil.cesar.socialApp.model._
 
 import scala.util._
@@ -25,10 +25,10 @@ object LoginRoutes extends BasicRoute{
   implicit val timeout: Timeout = Timeout(2 seconds)
 
 
-  val loginRoutes: Route = {
-    post {
+  def loginRoutes(): Route =
       pathPrefix("login") {
-        entity(as[LoginRequest]) {
+        post {
+          entity(as[LoginRequest]) {
           case lr @ LoginRequest(userName, userEmail) =>
             onComplete(userRegistrationActor ? GetUserByEmailAndName(userName, userEmail)) {
               case Failure(exception) =>
@@ -47,6 +47,5 @@ object LoginRoutes extends BasicRoute{
         }
       }
     }
-  }
 
 }
